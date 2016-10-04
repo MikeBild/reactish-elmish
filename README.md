@@ -6,6 +6,7 @@
 
 ```bash
 npm install
+npm test
 npm start
 ```
 
@@ -59,5 +60,4 @@ npm run build
 
 ## TODO
 
-* Create "How to test?" example
 * HTTP subscriptions example

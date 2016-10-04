@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "start": "export NODE_ENV=development && webpack-dev-server -d --hot --inline --no-info --port 3000",
-    "build": "export NODE_ENV=production && webpack -p ./src/App.js ./public/app.js"
+    "build": "export NODE_ENV=production && webpack -p ./src/App.js ./public/app.js",
+    "test": "tape -r babel-register ./tests/**/*.js"
   },
   "babel": {
     "presets": [
@@ -10,7 +11,9 @@
       "react",
       "stage-0"
     ],
-    "plugins": ["transform-flow-strip-types"]
+    "plugins": [
+      "transform-flow-strip-types"
+    ]
   },
   "dependencies": {
     "classnames": "2.2.5",
@@ -33,6 +36,7 @@
     "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "sync-request": "^3.0.1",
+    "tape": "^4.6.2",
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1"
   }
