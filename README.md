@@ -1,6 +1,6 @@
-# Elmish + React + RxJS
+# Elmish <- React, RxJS
 
-> __Proof of Concept__ - don't use in production!
+> __Proof of Concept__ - Rxified version to better understand the [Elm Architecture](https://guide.elm-lang.org/architecture/). Don't use in production!
 
 ## Setup
 
@@ -16,11 +16,11 @@ npm start
 
 **init()** function, returning the initial state (a state is an object with a required key model and an optional key cmd)
 
-**update(model, event)** reduce function, returns the new state
+**update(model, msg)** reduce function, returns the new state
 
-**view(model, update)** function, returns the ui declaration
+**view(model, update)** function, returns the UI (React)
 
-**subscription(command, eventStream)** function, returns an optional stream of events
+**subscription(cmd, msgStream)** function, returns an stream of msgs
 
 ## Reactish API
 
@@ -53,8 +53,11 @@ export default class MyComponent extends ReactComponent {
 npm run build
 ```
 
+## Static Type Influence
+
+* [How to using FlowType]()
+
 ## TODO
 
 * Create "How to test?" example
 * HTTP subscriptions example
-* Add Flow types influence

@@ -4,6 +4,7 @@ import { program } from '../lib'
 
 import Counter from './components/Counter'
 import DelayedCounter from './components/DelayedCounter'
+import StaticTypedCounter from './components/StaticTypedCounter'
 import Interval from './components/Interval'
 
 export default class Root extends React.Component {
@@ -27,6 +28,7 @@ export default class Root extends React.Component {
         </div>
         <Counter />
         <DelayedCounter />
+        <StaticTypedCounter />
       </div>
     )
   }
