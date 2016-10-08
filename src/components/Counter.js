@@ -19,7 +19,7 @@ export default class Counter extends ReactComponent {
 
   view(model, update) {
     return (
-      <div>
+      <div className="widget">
         <p>Counter: {model}</p>
         <button onClick={() => update('INCREMENT_REQUESTED')}>+1</button>
         <button onClick={() => update('DECREMENT_REQUESTED')}>-1</button>

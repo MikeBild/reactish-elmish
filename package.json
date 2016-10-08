@@ -5,6 +5,10 @@
     "build": "export NODE_ENV=production && webpack -p ./src/App.js ./public/app.js",
     "test": "tape -r babel-register ./tests/**/*.js"
   },
+  "endpoint": {
+    "url": "https://react-elmish.linklet.run",
+    "token": "eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4"
+  },
   "babel": {
     "presets": [
       "es2015",

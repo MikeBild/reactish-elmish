@@ -23,13 +23,11 @@ export default class DelayedCounter extends ReactComponent {
   }
 
   view(model, update) {
-    const increment = () => update('INCREMENT_REQUESTED')
-    const decrement = () => update('DECREMENT_REQUESTED')
     return (
-      <div>
+      <div className="widget">
         <p>Delayed counter: {model}</p>
-        <button onClick={increment}>+1</button>
-        <button onClick={decrement}>-1</button>
+        <button onClick={() => update('INCREMENT_REQUESTED')}>+1</button>
+        <button onClick={() => update('DECREMENT_REQUESTED')}>-1</button>
       </div>
     )
   }
