@@ -1,4 +1,4 @@
-# Elmish <- React, RxJS
+# React, RxJS -> Elmish
 
 > __Proof of Concept__ - Rxified version to better understand the [Elm Architecture](https://guide.elm-lang.org/architecture/). Don't use in production!
 
@@ -12,6 +12,9 @@ npm start
 
 ## Flow
 ![Diagram](docs/diagram.png)
+
+* [Long Running Transactions / Sagas](docs/saga.md)
+* [Optimistic Updates / UI](docs/optimistic-update.md)
 
 ## Elmish API
 
@@ -47,9 +50,6 @@ export default class MyComponent extends ReactComponent {
   }
 }
 ```
-
-## Long Running Transactions / Sagas
-
 
 ## Build
 
