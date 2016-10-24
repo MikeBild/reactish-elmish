@@ -1,5 +1,4 @@
-/* @flow */
-
+// @flow
 import React from 'react'
 import { ReactComponent } from '../../lib'
 
@@ -8,7 +7,7 @@ export default class Counter extends ReactComponent {
     return { model: 0 }
   }
 
-  update(model: number, msg: Object): Object {
+  update(model: number, msg: Msg): Object {
     switch (msg) {
       case 'INCREMENT_REQUESTED' :
         return { model: model + 1 }
