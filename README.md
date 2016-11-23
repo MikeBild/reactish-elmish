@@ -13,7 +13,6 @@ npm start
 ## Flow
 ![Diagram](docs/diagram.png)
 
-* [Long Running Transactions / Sagas](docs/saga.md)
 * [Optimistic Updates / UI](docs/optimistic-update.md)
 
 ## Elmish API
@@ -57,10 +56,8 @@ export default class MyComponent extends ReactComponent {
 npm run build
 ```
 
-## Static Type Influence
-
-* [How to using FlowType]()
-
 ## TODO
 
 * HTTP subscriptions example
+* Nested components
+

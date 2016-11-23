@@ -1,4 +1,3 @@
-// @flow
 import React from 'react'
 import { ReactComponent } from '../../lib'
 
