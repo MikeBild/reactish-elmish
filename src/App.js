@@ -6,6 +6,7 @@ import DelayedCounter from './components/DelayedCounter'
 import StaticTypedCounter from './components/StaticTypedCounter'
 import Interval from './components/Interval'
 import Optimistic from './components/Optimistic'
+import CounterComposed from './components/CounterComposed'
 import './style.css'
 
 export default class Root extends React.Component {
@@ -31,7 +32,8 @@ export default class Root extends React.Component {
         <Counter />
         <DelayedCounter />
         <StaticTypedCounter />
-        <Optimistic />
+        <Optimistic />        
+        <CounterComposed />
       </div>
     )
   }

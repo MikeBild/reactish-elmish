@@ -3,7 +3,7 @@ import { ReactComponent } from '../../lib'
 
 export default class Counter extends ReactComponent {
   init() {
-    return { model: 0 }
+    return { model: this.props.count || 0 }
   }
 
   update(model, msg) {
