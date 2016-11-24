@@ -7,6 +7,7 @@ import StaticTypedCounter from './components/StaticTypedCounter'
 import Interval from './components/Interval'
 import Optimistic from './components/Optimistic'
 import CounterComposed from './components/CounterComposed'
+import RandomGif from './components/RandomGif'
 import './style.css'
 
 export default class Root extends React.Component {
@@ -25,7 +26,7 @@ export default class Root extends React.Component {
   render () {
     return (
       <div>
-        <h1 className="text-center">React, RxJS -> Elmish</h1>
+        <h1 className="text-center">React + RxJS -> Elmish</h1>
         <div className="widget">
           Interval counter: {this.state.count}
         </div>
@@ -34,6 +35,7 @@ export default class Root extends React.Component {
         <StaticTypedCounter />
         <Optimistic />        
         <CounterComposed />
+        <RandomGif />
       </div>
     )
   }
