@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom'
 import { program } from '../lib'
 import Counter from './components/Counter'
 import DelayedCounter from './components/DelayedCounter'
-import StaticTypedCounter from './components/StaticTypedCounter'
 import Interval from './components/Interval'
 import Optimistic from './components/Optimistic'
 import CounterComposed from './components/CounterComposed'
 import RandomGifFetch from './components/RandomGifFetch'
 import RandomGifRx from './components/RandomGifRx'
 import WebEvents from './components/WebEvents'
+import Form from './components/Form'
 import './style.css'
 
 export default class Root extends React.Component {
@@ -35,9 +35,9 @@ export default class Root extends React.Component {
         <Counter />
         <WebEvents />
         <DelayedCounter />
-        <StaticTypedCounter />
-        <Optimistic />        
         <CounterComposed />
+        <Optimistic />        
+        <Form />
         <RandomGifFetch />
         <RandomGifRx />
       </div>

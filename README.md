@@ -15,6 +15,20 @@ npm start
 
 * [Optimistic Updates / UI](docs/optimistic-update.md)
 
+## Introduction
+
+* Minimal inversive - combine React-Rendering and Reactive Extentions without building a Framework with unnecessary abstractions 
+* Follow the principle of "reactive" fold left with [Rx Scan Operator](http://rxmarbles.com/#scan) 
+
+## Examples
+
+* [Counter]()
+* [Delayed Counter]()
+* [Composed Compoents]()
+* [Form / Validation]()
+* [Random Gif]()
+* [Web-Events]()
+
 ## Elmish API
 
 **init()** function, returning the initial state (a state is an object with a required key model and an optional key cmd)
