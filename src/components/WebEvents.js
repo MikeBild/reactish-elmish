@@ -5,14 +5,13 @@ import config from '../../package.json'
 
 export default class WebEvents extends ReactComponent {
   init() {
-    return {model: { docs: []}, cmd: 'SUBSCRIBE'};
+    return {model: {}, cmd: 'SUBSCRIBE'};
   }
 
-  update (model, msg) {    
+  update (model, msg) {
     switch (msg.type) {
       case 'DOC_LOADED':
-        model.docs.push(msg.model)
-        return { model }
+        return { model, ...msg }
       default:
         return { model, ...msg };    
     }
@@ -22,12 +21,8 @@ export default class WebEvents extends ReactComponent {
   view (model, update) {
     return (
       <div className="widget">
-        { model.docs &&
-          model.docs.map((doc, i) => 
-            <div key={i}>{doc._id} - {doc.dt}</div>
-          )
-        }
-        <button onClick={() => update({cmd: 'UPSERT_DOC'})}>Change Entity</button>
+        {model._id} - {model.dt}&nbsp; 
+        <button onClick={() => update({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
       </div>
     );
   }
@@ -37,18 +32,29 @@ export default class WebEvents extends ReactComponent {
       case 'SUBSCRIBE' :
         return this._changeFeedSubscription()
       case 'UPSERT_DOC':
-        return Rx.Observable.return(this._upsert({dt: new Date().toISOString()}))
+        return Rx.Observable.return(this._upsert({_id: 'demo-doc', dt: new Date().toISOString()}))
     }
   }
 
   _changeFeedSubscription () {
+
+/*
+curl --insecure \
+  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
+  https://react-elmish.linklet.run/default/_changes?feed=continuous&include_docs=true
+
+curl --insecure \
+  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
+  https://react-elmish.linklet.run/default/_all_docs  
+*/
+
     const changesStream = new Rx.Subject()
     const xhr = new XMLHttpRequest()
     xhr.open('GET',`${config.endpoint.url}/default/_changes?feed=continuous&include_docs=true`, true)
     xhr.setRequestHeader('authorization', `Bearer ${config.endpoint.token}`)
     xhr.send('')
     xhr.onreadystatechange = () => {
-      if (xhr.readyState == 3) {
+      if (xhr.readyState == 3) {        
         const lastLine = xhr.responseText.split('\n').filter(x => x).pop()
         changesStream.onNext(lastLine)
       }
@@ -62,28 +68,32 @@ export default class WebEvents extends ReactComponent {
         } catch(error) {}
       })
       .filter(x => x)
+      .filter(x => !x.deleted)
+      .filter(x => x.doc.dt)
       .map(x => ({type: 'DOC_LOADED', model: x.doc}))
   }
 
   _upsert (value) {
-    console.log(value)
-    return fetch(`${config.endpoint.url}/default`, {
+    return this._get(value._id)
+        .then(data => ({...data, ...value}))
+        .then(data => fetch(`${config.endpoint.url}/default/${value._id}`, {
         headers: {
           'content-type': 'application/json',
           'authorization': `Bearer ${config.endpoint.token}`,
         },
-        method: 'POST',
-        body: JSON.stringify(value),
-      })
+        method: 'PUT',
+        body: JSON.stringify(data),
+      }))
   }
 
   _get (id) {
-    return fetch(`${config.endpoint.url}/default/{$id}`, {
+    return fetch(`${config.endpoint.url}/default/${id}`, {
         headers: {
           'content-type': 'application/json',
           'authorization': `Bearer ${config.endpoint.token}`,
         }
       })
+      .then(x => x.json())
   }
 
 }
