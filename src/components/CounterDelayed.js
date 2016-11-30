@@ -32,7 +32,6 @@ export default class CounterDelayed extends ReactComponent {
     )
   }
 
-  // runs the side effects
   subscriptions(cmd) {
     switch (cmd) {
       case 'SCHEDULE_INCREMENT' :
