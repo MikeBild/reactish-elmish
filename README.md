@@ -10,6 +10,12 @@ npm test
 npm start
 ```
 
+## Build
+
+```bash
+npm run build
+```
+
 ## Flow
 ![Diagram](docs/diagram.png)
 
@@ -22,12 +28,17 @@ npm start
 
 ## Examples
 
-* [Counter]()
-* [Delayed Counter]()
-* [Composed Compoents]()
-* [Form / Validation]()
-* [Random Gif]()
-* [Web-Events]()
+* [All in One](https://react-elmish.linklet.run/allinone)
+* [Counter](https://react-elmish.linklet.run/counter)
+* [Counter delayed](https://react-elmish.linklet.run/counterdelayed)
+* [Counter composed](https://react-elmish.linklet.run/countercomposed)
+* [Form / Validation](https://react-elmish.linklet.run/form)
+* [Interval component](https://react-elmish.linklet.run/intervalcomponent)
+* [Random Gif (Fetch)](https://react-elmish.linklet.run/randomgiffetch)
+* [Random Gif (Rx)](https://react-elmish.linklet.run/randomgifrx)
+* [Optimistic UI](https://react-elmish.linklet.run/optimistic)
+* [Web Events](https://react-elmish.linklet.run/webevents)
+
 
 ## Elmish API
 
@@ -35,9 +46,9 @@ npm start
 
 **update(model, msg)** reduce function, returns the new state
 
-**view(model, update)** function, returns the UI (React)
+**view(model, update)** function, returns the updated UI (React)
 
-**subscription(cmd, msgStream)** function, returns an stream of msgs
+**subscription(cmd, msgStream)** function, returns an stream of messages
 
 ## Reactish API
 
@@ -64,14 +75,6 @@ export default class MyComponent extends ReactComponent {
 }
 ```
 
-## Build
+## Todos
 
-```bash
-npm run build
-```
-
-## TODO
-
-* HTTP subscriptions example
-* Nested components
-
+* Debounce / Throttle Example

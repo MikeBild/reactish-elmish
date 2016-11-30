@@ -2,7 +2,7 @@ import React from 'react'
 import Rx from 'rx'
 import { program, ReactComponent } from '../../lib'
 
-export default class DelayedCounter extends ReactComponent {
+export default class CounterDelayed extends ReactComponent {
   init() {
     return { model: 0 }
   }
