@@ -1,5 +1,5 @@
 import test from 'tape'
-import DelayedCounter from '../src/components/DelayedCounter'
+import DelayedCounter from '../src/components/CounterDelayed'
 
 test('INCREMENTED event', assert => {
   assert.plan(1)
