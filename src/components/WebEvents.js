@@ -1,7 +1,6 @@
 import React from 'react'
 import Rx from 'rx'
 import { ReactComponent } from '../../lib'
-import config from '../../package.json'
 
 export default class WebEvents extends ReactComponent {
   init() {
@@ -13,15 +12,15 @@ export default class WebEvents extends ReactComponent {
       case 'DOC_LOADED':
         return { model, ...msg }
       default:
-        return { model, ...msg };    
+        return { model, ...msg };
     }
-    
+
   }
 
   view (model, update) {
     return (
       <div className="widget">
-        {model._id} - {model.dt}&nbsp; 
+        {model._id} - {model.dt}&nbsp;
         <button onClick={() => update({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
       </div>
     );
@@ -29,7 +28,7 @@ export default class WebEvents extends ReactComponent {
 
   subscriptions (cmd) {
     switch (cmd) {
-      case 'SUBSCRIBE' :
+      case 'SUBSCRIBE':
         return this._changeFeedSubscription()
       case 'UPSERT_DOC':
         return Rx.Observable.return(this._upsert({_id: 'demo-doc', dt: new Date().toISOString()}))
@@ -39,22 +38,20 @@ export default class WebEvents extends ReactComponent {
   _changeFeedSubscription () {
 
 /*
-curl --insecure \
-  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
-  https://react-elmish.linklet.run/default/_changes?feed=continuous&include_docs=true
+curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
+  https://bbaabb.linklet.run/default/_changes?feed=continuous&include_docs=true
 
-curl --insecure \
-  -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
-  https://react-elmish.linklet.run/default/_all_docs  
+curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
+  https://bbaabb.linklet.run/default/_all_docs
 */
 
     const changesStream = new Rx.Subject()
     const xhr = new XMLHttpRequest()
-    xhr.open('GET',`${config.endpoint.url}/default/_changes?feed=continuous&include_docs=true`, true)
-    xhr.setRequestHeader('authorization', `Bearer ${config.endpoint.token}`)
+    xhr.open('GET',`${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`, true)
+    xhr.setRequestHeader('authorization', `Bearer ${window.__env.TOKEN}`)
     xhr.send('')
     xhr.onreadystatechange = () => {
-      if (xhr.readyState == 3) {        
+      if (xhr.readyState == 3) {
         const lastLine = xhr.responseText.split('\n').filter(x => x).pop()
         changesStream.onNext(lastLine)
       }
@@ -76,10 +73,10 @@ curl --insecure \
   _upsert (value) {
     return this._get(value._id)
         .then(data => ({...data, ...value}))
-        .then(data => fetch(`${config.endpoint.url}/default/${value._id}`, {
+        .then(data => fetch(`${window.__env.ENDPOINT}/default/${value._id}`, {
         headers: {
           'content-type': 'application/json',
-          'authorization': `Bearer ${config.endpoint.token}`,
+          'authorization': `Bearer ${window.__env.TOKEN}`,
         },
         method: 'PUT',
         body: JSON.stringify(data),
@@ -87,10 +84,10 @@ curl --insecure \
   }
 
   _get (id) {
-    return fetch(`${config.endpoint.url}/default/${id}`, {
+    return fetch(`${window.__env.ENDPOINT}/default/${id}`, {
         headers: {
           'content-type': 'application/json',
-          'authorization': `Bearer ${config.endpoint.token}`,
+          'authorization': `Bearer ${window.__env.TOKEN}`,
         }
       })
       .then(x => x.json())

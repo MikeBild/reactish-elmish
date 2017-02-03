@@ -1,4 +1,6 @@
+require('babel-polyfill');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const  webpack = require('webpack');
 
 module.exports = {
@@ -29,5 +31,8 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       },
     }),
+    new CopyWebpackPlugin([
+      { from: 'src/config.js' }
+    ]),
   ]
 };

@@ -3,7 +3,7 @@ import { ReactComponent } from '../../lib'
 
 export default class Form extends ReactComponent {
   init() {
-    return { 
+    return {
       model: {
         firstname: 'John',
         lastname: 'Doe',
@@ -21,7 +21,7 @@ export default class Form extends ReactComponent {
             ...model,
             ...msg.model,
           }
-        }   
+        }
       case 'FIRSTNAME_CHANGED':
         model.errors['firstname'] = !msg.model.firstname ? 'First name can not be empty' : ''
         return {
@@ -29,23 +29,23 @@ export default class Form extends ReactComponent {
             ...model,
             ...msg.model,
           }
-        }        
+        }
       default :
         return { model }
       }
   }
 
-  view(model, update) {
+  view(model, action) {
     return (
-      <div className="widget">               
+      <div className="widget">
         <label>Entered first name: </label>{model.firstname}<br/>
         <label>Entered last name: </label>{model.lastname}<br/>
-        { Object.keys(model.errors).map((field, i) => 
+        { Object.keys(model.errors).map((field, i) =>
             <div key={i}>{model.errors[field]}</div>
           )
         }
-        <input type="text" placeholder="first name" defaultValue={model.firstname} onChange={e => update({type: 'FIRSTNAME_CHANGED', model: {firstname: e.target.value}})} />
-        <input type="text" placeholder="last name" defaultValue={model.lastname} onChange={e => update({type: 'LASTNAME_CHANGED', model: {lastname: e.target.value}})} />
+        <input type="text" placeholder="first name" defaultValue={model.firstname} onChange={e => action({type: 'FIRSTNAME_CHANGED', model: {firstname: e.target.value}})} />
+        <input type="text" placeholder="last name" defaultValue={model.lastname} onChange={e => action({type: 'LASTNAME_CHANGED', model: {lastname: e.target.value}})} />
       </div>
     )
   }

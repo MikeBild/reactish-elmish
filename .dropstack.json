@@ -1,0 +1,10 @@
+{
+  "username": "mike@mikebild.com",
+  "variables": [],
+  "alias": "reactish-elmish",
+  "serviceName": "sivknohp",
+  "serviceUrl": "https://sivknohp.dropstack.run",
+  "serviceAlias": "reactish-elmish",
+  "serviceType": "spa",
+  "serviceCName": "reactish-elmish.dropstack.run"
+}

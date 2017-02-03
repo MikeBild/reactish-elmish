@@ -1,13 +1,12 @@
 import React from 'react'
 import Rx from 'rx'
 import { program, ReactComponent } from '../../lib'
-import config from '../../package.json'
 
 export default class Optimistic extends ReactComponent {
   api () {
     // randomly changing success (HTTP 200) / failure (HTTP 500) result
-    return fetch(`${config.endpoint.url}/timeout-example`, {
-        headers: { authorization: `Bearer ${config.endpoint.token}`, }
+    return fetch(`${window.__env.ENDPOINT}/timeout-example`, {
+        headers: { authorization: `Bearer ${window.__env.TOKEN}`, }
       })
       .then(response => {
         if(!response.ok) return Promise.reject(new Error('Fetch error occured'))

@@ -7,13 +7,19 @@
 ```bash
 npm install
 npm test
-npm start
+npm run dev
 ```
 
 ## Build
 
 ```bash
 npm run build
+```
+
+## Deploy to [https://dropstack.run](https://dropstack.run)
+
+```bash
+dropstack
 ```
 
 ## Flow
@@ -27,8 +33,8 @@ npm run build
 * Fits for "smart" components (side effects + state management + logic + rendering)
 * Stateless React Functions for "dumb" components
 * Component based state and side effect management (avoid central state)
-* Minimal inversive - combine React-Rendering and Reactive Extentions without building a Framework with unnecessary abstractions 
-* Follow the principle of "reactive" fold left with [Rx Scan Operator](http://rxmarbles.com/#scan) 
+* Minimal inversive - combine React-Rendering and Reactive Extentions without building a Framework with unnecessary abstractions
+* Follow the principle of "reactive" fold left with [Rx Scan Operator](http://rxmarbles.com/#scan)
 * Async/Sync side effect orchestration via [Rx-Observables](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html)
 
 ## Examples
@@ -63,7 +69,7 @@ import React from 'react'
 import { ReactComponent } from '../../lib'
 
 export default class MyComponent extends ReactComponent {
-  // Prepare initial state  
+  // Prepare initial state
   init() {
     return {
       model: { something: 'init', }
@@ -74,11 +80,11 @@ export default class MyComponent extends ReactComponent {
   update(model, msg) {
     switch (msg.type) {
       case 'DO_SOMETHING':
-        return { 
+        return {
           model: { something: 'Foo Bar', }
         }
       default:
-        return { 
+        return {
           model
         }
     }
@@ -89,7 +95,7 @@ export default class MyComponent extends ReactComponent {
     return (
       <div>
         {JSON.stringify(model, null, 4)}
-        <button onClick={() => update({type: 'DO_SOMETHING', model})}>Click</button>      
+        <button onClick={() => update({type: 'DO_SOMETHING', model})}>Click</button>
       </div>
     )
   }
@@ -100,10 +106,3 @@ export default class MyComponent extends ReactComponent {
 ## Todos
 
 * Debounce / Throttle example
-
-## Questions
-
-* Props to state?
-* Props as initial state?
-* msg objects as functions?
-* NG2 / TypeScript ability?
