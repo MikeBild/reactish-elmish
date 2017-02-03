@@ -2,6 +2,8 @@
 
 > __Proof of Concept__ - [Rx(ified)](http://reactivex.io/rxjs/) and [React(ified)](https://facebook.github.io/react/docs/introducing-jsx.html) version for a better understanding of the [Elm Architecture](https://guide.elm-lang.org/architecture/). Don't use in production!
 
+## [Live](https://reactish-elmish.dropstack.run)
+
 ## Setup
 
 ```bash
@@ -39,16 +41,16 @@ dropstack
 
 ## Examples
 
-* [All in One](https://react-elmish.dropstack.run/allinone)
-* [Counter](https://react-elmish.dropstack.run/counter)
-* [Counter delayed](https://react-elmish.dropstack.run/counterdelayed)
-* [Counter composed](https://react-elmish.dropstack.run/countercomposed)
-* [Form / Validation](https://react-elmish.dropstack.run/form)
-* [Interval component](https://react-elmish.dropstack.run/intervalcomponent)
-* [Random Gif (Fetch)](https://react-elmish.dropstack.run/randomgiffetch)
-* [Random Gif (Rx)](https://react-elmish.dropstack.run/randomgifrx)
-* [Optimistic UI](https://react-elmish.dropstack.run/optimistic)
-* [Web Events](https://react-elmish.dropstack.run/webevents)
+* [All in One](https://reactish-elmish.dropstack.run/allinone)
+* [Counter](https://reactish-elmish.dropstack.run/counter)
+* [Counter delayed](https://reactish-elmish.dropstack.run/counterdelayed)
+* [Counter composed](https://reactish-elmish.dropstack.run/countercomposed)
+* [Form / Validation](https://reactish-elmish.dropstack.run/form)
+* [Interval component](https://reactish-elmish.dropstack.run/intervalcomponent)
+* [Random Gif (Fetch)](https://reactish-elmish.dropstack.run/randomgiffetch)
+* [Random Gif (Rx)](https://reactish-elmish.dropstack.run/randomgifrx)
+* [Optimistic UI](https://reactish-elmish.dropstack.run/optimistic)
+* [Web Events](https://reactish-elmish.dropstack.run/webevents)
 
 ## Elmish API
 
