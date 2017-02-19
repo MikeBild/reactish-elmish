@@ -21,7 +21,7 @@ npm run build
 ## Deploy to [https://dropstack.run](https://dropstack.run)
 
 ```bash
-dropstack
+npm run deploy
 ```
 
 ## Flow
