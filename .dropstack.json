@@ -1,10 +1,7 @@
 {
-  "username": "mike@mikebild.com",
   "variables": [],
-  "alias": "reactish-elmish",
-  "serviceName": "sivknohp",
-  "serviceUrl": "https://sivknohp.dropstack.run",
-  "serviceAlias": "reactish-elmish",
-  "serviceType": "spa",
-  "serviceCName": "reactish-elmish.dropstack.run"
+  "alias": "reactish-elmish.services.dropstack.run",
+  "name": "focqrnar",
+  "serviceUrl": "focqrnar.services.dropstack.run",
+  "type": "spa"
 }
