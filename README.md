@@ -41,16 +41,16 @@ npm run deploy
 
 ## Examples
 
-* [All in One](https://reactish-elmish.dropstack.run/allinone)
-* [Counter](https://reactish-elmish.dropstack.run/counter)
-* [Counter delayed](https://reactish-elmish.dropstack.run/counterdelayed)
-* [Counter composed](https://reactish-elmish.dropstack.run/countercomposed)
-* [Form / Validation](https://reactish-elmish.dropstack.run/form)
-* [Interval component](https://reactish-elmish.dropstack.run/intervalcomponent)
-* [Random Gif (Fetch)](https://reactish-elmish.dropstack.run/randomgiffetch)
-* [Random Gif (Rx)](https://reactish-elmish.dropstack.run/randomgifrx)
-* [Optimistic UI](https://reactish-elmish.dropstack.run/optimistic)
-* [Web Events](https://reactish-elmish.dropstack.run/webevents)
+* [All in One](http://reactish-elmish.services.dropstack.run/allinone)
+* [Counter](http://reactish-elmish.services.dropstack.run/counter)
+* [Counter delayed](http://reactish-elmish.services.dropstack.run/counterdelayed)
+* [Counter composed](http://reactish-elmish.services.dropstack.run/countercomposed)
+* [Form / Validation](http://reactish-elmish.services.dropstack.run/form)
+* [Interval component](http://reactish-elmish.services.dropstack.run/intervalcomponent)
+* [Random Gif (Fetch)](http://reactish-elmish.services.dropstack.run/randomgiffetch)
+* [Random Gif (Rx)](http://reactish-elmish.services.dropstack.run/randomgifrx)
+* [Optimistic UI](http://reactish-elmish.services.dropstack.run/optimistic)
+* [Web Events](http://reactish-elmish.services.dropstack.run/webevents)
 
 ## Elmish API
 
