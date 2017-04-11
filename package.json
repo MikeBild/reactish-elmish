@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "NODE_ENV=development && webpack-dev-server -d --history-api-fallback --hot --inline --no-info --progress --port 5000",
-    "build": "NODE_ENV=production && webpack -p --progress ./src/App.js ./build/app.js",
+    "dev": "NODE_ENV=development webpack-dev-server -d --history-api-fallback --hot --inline --no-info --progress --port 5000",
+    "build": "NODE_ENV=production webpack -p --progress ./src/App.js ./build/app.js",
     "test": "tape -r babel-register ./tests/**/*.js",
     "deploy": "npm run build && dropstack deploy"
   },

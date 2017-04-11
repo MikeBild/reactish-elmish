@@ -66,13 +66,14 @@ npm run deploy
 
 ## Reactish API
 
-Use it with functional composition (compose / withElmish)
+### Use Reactish-Elmish with functional composition (compose / withElmish)
 
 ```javascript
 import React from 'react'
 import Rx from 'rx'
 import { compose, withElmish } from '../../lib'
 
+// Render view
 export const Interval = props => (
   <div className="widget">
     Component interval counter via functional composition: {props.model.count}
@@ -80,12 +81,22 @@ export const Interval = props => (
 )
 
 const elmishInterval = withElmish({
-  init: () => ({model: {count: 0}, cmd: 'INTERVAL_START'}),
-  update: (model, msg) => {
+  // Prepare initial state
+  init () {
+    return {
+      model: {
+        count: 0
+      },
+      cmd: 'INTERVAL_START'
+    }
+  },
+  // Update state
+  update (model, msg) {
     model.count += 1
     return { model }
   },
-  subscriptions: cmd => {
+  // Attach subscriptions to external side-effects
+  subscriptions (cmd) {
     switch (cmd) {
       case 'INTERVAL_START':
         return Rx.Observable.interval(1000).map(x => 'INTERVAL_ELAPSED')
@@ -96,7 +107,7 @@ const elmishInterval = withElmish({
 export default compose(elmishInterval)(Interval)
 ```
 
-Use it with class extention
+### Use Reactish-Elmish with class extention
 
 ```javascript
 import React from 'react'

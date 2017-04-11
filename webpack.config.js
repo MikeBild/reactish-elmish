@@ -1,10 +1,9 @@
-require('babel-polyfill');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const  webpack = require('webpack');
 
 module.exports = {
-  entry: './src/App.js',
+  entry: ['babel-polyfill', './src/App.js'],
   output: {
     publicPath: '/'
   },
