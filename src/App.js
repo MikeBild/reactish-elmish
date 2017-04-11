@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Router, Route, browserHistory, Link } from 'react-router'
-import { program } from '../lib'
 import Counter from './components/Counter'
 import CounterDelayed from './components/CounterDelayed'
 import Interval from './components/Interval'
 import IntervalComponent from './components/IntervalComponent'
+import IntervalComponentCompose from './components/IntervalComponentCompose'
 import Optimistic from './components/Optimistic'
 import CounterComposed from './components/CounterComposed'
 import RandomGifFetch from './components/RandomGifFetch'
@@ -24,9 +24,7 @@ export default class AllInOne extends React.Component {
   }
 
   componentDidMount() {
-    this.intervalSubscription = this.interval.program.view
-                                    .do(x => this.setState({count: x.count}))
-                                    .subscribe()
+    this.intervalSubscription = this.interval.program.view.do(x => this.setState({count: x.count})).subscribe()
   }
 
   componentWillUnmount() {
@@ -42,6 +40,7 @@ export default class AllInOne extends React.Component {
         <CounterComposed />
         <Form />
         <IntervalComponent />
+        <IntervalComponentCompose />
         <div className="widget">
           State Interval counter: {this.state.count}
         </div>
@@ -65,6 +64,7 @@ const Navigation = () => {
         <li><Link to="/countercomposed">Counter composed</Link></li>
         <li><Link to="/form">Form / Validation</Link></li>
         <li><Link to="/intervalcomponent">Interval component</Link></li>
+        <li><Link to="/intervalcomponentcompose">Interval component via functional composition</Link></li>
         <li><Link to="/randomgiffetch">Random Gif (Fetch)</Link></li>
         <li><Link to="/randomgifrx">Random Gif (Rx)</Link></li>
         <li><Link to="/optimistic">Optimistic UI</Link></li>
@@ -84,6 +84,7 @@ ReactDOM.render(
     <Route path="/countercomposed" component={CounterComposed} />
     <Route path="/form" component={Form} />
     <Route path="/intervalcomponent" component={IntervalComponent} />
+    <Route path="/intervalcomponentcompose" component={IntervalComponentCompose} />
     <Route path="/randomgiffetch" component={RandomGifFetch} />
     <Route path="/randomgifrx" component={RandomGifRx} />
     <Route path="/optimistic" component={Optimistic} />

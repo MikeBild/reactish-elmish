@@ -25,6 +25,7 @@ npm run deploy
 ```
 
 ## Flow
+
 ![Diagram](docs/diagram.png)
 
 * [Optimistic Updates / UI](docs/optimistic-update.md)
@@ -47,6 +48,7 @@ npm run deploy
 * [Counter composed](http://reactish-elmish.services.dropstack.run/countercomposed)
 * [Form / Validation](http://reactish-elmish.services.dropstack.run/form)
 * [Interval component](http://reactish-elmish.services.dropstack.run/intervalcomponent)
+* [Interval component via functional composition](http://reactish-elmish.services.dropstack.run/intervalcomponentcompose)
 * [Random Gif (Fetch)](http://reactish-elmish.services.dropstack.run/randomgiffetch)
 * [Random Gif (Rx)](http://reactish-elmish.services.dropstack.run/randomgifrx)
 * [Optimistic UI](http://reactish-elmish.services.dropstack.run/optimistic)
@@ -64,7 +66,37 @@ npm run deploy
 
 ## Reactish API
 
-A React component helper class.
+Use it with functional composition (compose / withElmish)
+
+```javascript
+import React from 'react'
+import Rx from 'rx'
+import { compose, withElmish } from '../../lib'
+
+export const Interval = props => (
+  <div className="widget">
+    Component interval counter via functional composition: {props.model.count}
+  </div>
+)
+
+const elmishInterval = withElmish({
+  init: () => ({model: {count: 0}, cmd: 'INTERVAL_START'}),
+  update: (model, msg) => {
+    model.count += 1
+    return { model }
+  },
+  subscriptions: cmd => {
+    switch (cmd) {
+      case 'INTERVAL_START':
+        return Rx.Observable.interval(1000).map(x => 'INTERVAL_ELAPSED')
+    }
+  }
+})
+
+export default compose(elmishInterval)(Interval)
+```
+
+Use it with class extention
 
 ```javascript
 import React from 'react'
