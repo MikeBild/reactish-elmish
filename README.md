@@ -2,7 +2,7 @@
 
 > __Proof of Concept__ - [Rx(ified)](http://reactivex.io/rxjs/) and [React(ified)](https://facebook.github.io/react/docs/introducing-jsx.html) version for a better understanding of the [Elm Architecture](https://guide.elm-lang.org/architecture/). Don't use in production!
 
-## [Live](http://reactish-elmish.services.dropstack.run)
+## [Live](https://reactish-elmish.services.dropstack.run)
 
 ## Setup
 

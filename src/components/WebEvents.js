@@ -37,18 +37,9 @@ export default class WebEvents extends ReactComponent {
 
   _changeFeedSubscription () {
 
-/*
-curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
-  https://bbaabb.linklet.run/default/_changes?feed=continuous&include_docs=true
-
-curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.eyJ1c2VyIjoiYWRtaW4iLCJyb2xlIjoiYWRtaW4ifQ.7T1c08mDJ-W3fGOQbgkVAoXvranJndViGmo94tumXP4" \
-  https://bbaabb.linklet.run/default/_all_docs
-*/
-
     const changesStream = new Rx.Subject()
     const xhr = new XMLHttpRequest()
     xhr.open('GET',`${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`, true)
-    xhr.setRequestHeader('authorization', `Bearer ${window.__env.TOKEN}`)
     xhr.send('')
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 3) {
@@ -74,10 +65,7 @@ curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.
     return this._get(value._id)
         .then(data => ({...data, ...value}))
         .then(data => fetch(`${window.__env.ENDPOINT}/default/${value._id}`, {
-        headers: {
-          'content-type': 'application/json',
-          'authorization': `Bearer ${window.__env.TOKEN}`,
-        },
+        headers: { 'content-type': 'application/json' },
         method: 'PUT',
         body: JSON.stringify(data),
       }))
@@ -85,10 +73,7 @@ curl -H "authorization: Bearer eyJhbGciOiJIUzI1NiIsImF1ZGllbmNlIjoibGlua2xldCJ9.
 
   _get (id) {
     return fetch(`${window.__env.ENDPOINT}/default/${id}`, {
-        headers: {
-          'content-type': 'application/json',
-          'authorization': `Bearer ${window.__env.TOKEN}`,
-        }
+        headers: { 'content-type': 'application/json' },
       })
       .then(x => x.json())
   }
