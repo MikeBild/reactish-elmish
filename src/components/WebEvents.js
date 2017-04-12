@@ -36,17 +36,17 @@ export default class WebEvents extends ReactComponent {
   }
 
   _changeFeedSubscription () {
-
     const changesStream = new Rx.Subject()
     const xhr = new XMLHttpRequest()
-    xhr.open('GET',`${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`, true)
-    xhr.send('')
+    xhr.open('GET', `${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`, true)
+
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 3) {
         const lastLine = xhr.responseText.split('\n').filter(x => x).pop()
         changesStream.onNext(lastLine)
       }
     }
+    xhr.send()
 
     return changesStream
       .distinctUntilChanged()

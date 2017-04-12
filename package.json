@@ -26,7 +26,6 @@
     "style-loader": "^0.13.2"
   },
   "devDependencies": {
-    "dropstack-cli": "^1.4.8",
     "babel-cli": "6.10.1",
     "babel-core": "^6.10.4",
     "babel-eslint": "^6.1.2",
@@ -39,6 +38,7 @@
     "classnames": "2.2.5",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.23.1",
+    "dropstack-cli": "^1.4.8",
     "flow-bin": "^0.33.0",
     "flow-typed": "^2.0.0",
     "html-webpack-plugin": "^2.22.0",
