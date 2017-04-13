@@ -70,7 +70,7 @@ export default class WebEvents extends ReactComponent {
   _upsert (value) {
     return this._get(value._id)
         .then(data => ({...data, ...value}))
-        .then(data => fetch(`${window.__env.ENDPOINT}/default/${value._id}`, {
+        .then(data => fetch(`${window.__env.COUCHDB_ENDPOINT}/default/${value._id}`, {
         headers: {
           'accept': 'application/json',
           'content-type': 'application/json',
@@ -81,7 +81,7 @@ export default class WebEvents extends ReactComponent {
   }
 
   _get (id) {
-    return fetch(`${window.__env.ENDPOINT}/default/${id}`, {
+    return fetch(`${window.__env.COUCHDB_ENDPOINT}/default/${id}`, {
         headers: {
           'accept': 'application/json',
           'content-type': 'application/json',
@@ -89,5 +89,4 @@ export default class WebEvents extends ReactComponent {
       })
       .then(x => x.json())
   }
-
 }

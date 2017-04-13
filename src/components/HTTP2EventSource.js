@@ -11,7 +11,7 @@ export const HTTP2EventSource = props => (
   </div>
 )
 
-const elmishHTTP2EventSource = withElmish({
+const enhanceWithElmishHTTP2EventSource = withElmish({
   init () {
     return {model: {}, cmd: 'SUBSCRIBE'};
   },
@@ -34,6 +34,7 @@ const elmishHTTP2EventSource = withElmish({
 const eventSourceSubscription = () => {
   const changesStream = new Rx.Subject()
   const source = new EventSource(`${window.__env.HTTP2_ENDPOINT}/event-stream`)
+
   source.onmessage = msg => {
     const xhr = new XMLHttpRequest()
     xhr.open('GET', `${window.__env.HTTP2_ENDPOINT}/${msg.data}`)
@@ -45,5 +46,4 @@ const eventSourceSubscription = () => {
   return changesStream.map(x => ({type: 'DOC_LOADED', model: x}))
 }
 
-
-export default compose(elmishHTTP2EventSource)(HTTP2EventSource)
+export default compose(enhanceWithElmishHTTP2EventSource)(HTTP2EventSource)

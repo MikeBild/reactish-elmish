@@ -2,13 +2,13 @@ import React from 'react'
 import Rx from 'rx'
 import { compose, withElmish } from '../../lib'
 
-export const Interval = props => (
+export const IntervalComponentCompose = props => (
   <div className="widget">
     Component interval counter via functional composition: {props.model.count}
   </div>
 )
 
-const elmishInterval = withElmish({
+const enhanceWithElmishInterval = withElmish({
   init () {
     return {
       model: {
@@ -29,4 +29,4 @@ const elmishInterval = withElmish({
   }
 })
 
-export default compose(elmishInterval)(Interval)
+export default compose(enhanceWithElmishInterval)(IntervalComponentCompose)
