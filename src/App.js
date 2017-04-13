@@ -71,7 +71,6 @@ const Navigation = () => {
         <li><Link to="/optimistic">Optimistic UI</Link></li>
         <li><Link to="/webevents">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
-        <li><Link to="/throttle">Throttle</Link></li>
       </ul>
     </div>
   )
