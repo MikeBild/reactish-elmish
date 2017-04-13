@@ -2,7 +2,7 @@ import React from 'react'
 import Rx from 'rx'
 import { compose, withElmish } from '../../lib'
 
-export const Interval = props => (
+export const HTTP2EventSource = props => (
   <div>
     <h1>EventSource via HTTP/2 push notifications</h1>
     <div className="widget">
@@ -11,7 +11,7 @@ export const Interval = props => (
   </div>
 )
 
-const elmishInterval = withElmish({
+const elmishHTTP2EventSource = withElmish({
   init () {
     return {model: {}, cmd: 'SUBSCRIBE'};
   },
@@ -26,12 +26,12 @@ const elmishInterval = withElmish({
   subscriptions (cmd) {
     switch (cmd) {
       case 'SUBSCRIBE':
-        return changeFeedSubscription();
+        return eventSourceSubscription();
     }
   }
 })
 
-const changeFeedSubscription = () => {
+const eventSourceSubscription = () => {
   const changesStream = new Rx.Subject()
   const source = new EventSource(`${window.__env.HTTP2_ENDPOINT}/event-stream`)
   source.onmessage = msg => {
@@ -48,4 +48,4 @@ const changeFeedSubscription = () => {
 }
 
 
-export default compose(elmishInterval)(Interval)
+export default compose(elmishHTTP2EventSource)(HTTP2EventSource)
