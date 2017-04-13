@@ -49,6 +49,7 @@ export default class AllInOne extends React.Component {
         <RandomGifRx />
         <Optimistic />
         <WebEvents />
+        <HTTP2EventSource />
       </div>
     )
   }

@@ -52,7 +52,8 @@ npm run deploy
 * [Random Gif (Fetch)](http://reactish-elmish.services.dropstack.run/randomgiffetch)
 * [Random Gif (Rx)](http://reactish-elmish.services.dropstack.run/randomgifrx)
 * [Optimistic UI](http://reactish-elmish.services.dropstack.run/optimistic)
-* [Web Events](http://reactish-elmish.services.dropstack.run/webevents)
+* [CouchDB/PouchDB change feed via AJAX long polling](http://reactish-elmish.services.dropstack.run/webevents)
+* [EventSource via HTTP/2 push notifications](http://reactish-elmish.services.dropstack.run/http2eventsource)
 
 ## Elmish API
 
