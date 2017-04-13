@@ -14,14 +14,16 @@ export default class WebEvents extends ReactComponent {
       default:
         return { model, ...msg };
     }
-
   }
 
   view (model, update) {
     return (
-      <div className="widget">
-        {model._id} - {model.dt}&nbsp;
-        <button onClick={() => update({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
+      <div>
+        <h1>CouchDB/PouchDB change feed via AJAX long polling</h1>
+        <div className="widget">
+          ID: {model._id} - Seqence: {model.seq} - Datetime: {model.dt}&nbsp;
+          <button onClick={() => update({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
+        </div>
       </div>
     );
   }
@@ -37,28 +39,32 @@ export default class WebEvents extends ReactComponent {
 
   _changeFeedSubscription () {
     const changesStream = new Rx.Subject()
-    const xhr = new XMLHttpRequest()
-    xhr.open('GET', `${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`)
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState == 3) {
-        const lastLine = xhr.responseText.split('\n').filter(x => x).pop()
-        changesStream.onNext(lastLine)
+
+    function poll(next_seq = 0) {
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', `${window.__env.COUCHDB_ENDPOINT}/default/_changes?feed=longpoll&include_docs=true&since=${next_seq}`)
+      xhr.withCredentials = false
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 3) {
+          let lastLine = xhr.responseText
+          try {
+              lastLine = JSON.parse(lastLine)
+              next_seq = lastLine.last_seq
+          } catch(error) {}
+          changesStream.onNext(lastLine.results[0] || {})
+          poll(next_seq)
+        }
       }
+      xhr.send()
     }
-    xhr.send()
+    poll()
 
     return changesStream
       .distinctUntilChanged()
-      .map(x => {
-        try {
-            const data = JSON.parse(x)
-            if(data) return data.results[0]
-        } catch(error) {}
-      })
       .filter(x => x)
       .filter(x => !x.deleted)
       .filter(x => x.doc.dt)
-      .map(x => ({type: 'DOC_LOADED', model: x.doc}))
+      .map(x => ({type: 'DOC_LOADED', model: {...x.doc, seq: x.seq}}))
   }
 
   _upsert (value) {

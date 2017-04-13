@@ -1,3 +1,4 @@
 window.__env = {
-  ENDPOINT: 'https://oqxuukwd.services.dropstack.run',
+  COUCHDB_ENDPOINT: 'https://oqxuukwd.services.dropstack.run',
+  HTTP2_ENDPOINT: 'https://http2-express.services.dropstack.run/',
 }

@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const  webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/App.js'],
+  entry: ['./src/App.js'],
   output: {
     publicPath: '/'
   },
