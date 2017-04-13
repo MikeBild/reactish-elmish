@@ -42,9 +42,7 @@ const eventSourceSubscription = () => {
     xhr.send()
   }
 
-  return changesStream
-    .distinctUntilChanged()
-    .map(x => ({type: 'DOC_LOADED', model: x}))
+  return changesStream.map(x => ({type: 'DOC_LOADED', model: x}))
 }
 
 
