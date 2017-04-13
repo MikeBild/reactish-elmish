@@ -38,8 +38,7 @@ export default class WebEvents extends ReactComponent {
   _changeFeedSubscription () {
     const changesStream = new Rx.Subject()
     const xhr = new XMLHttpRequest()
-    xhr.open('GET', `${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`, true)
-
+    xhr.open('GET', `${window.__env.ENDPOINT}/default/_changes?feed=continuous&include_docs=true`)
     xhr.onreadystatechange = () => {
       if (xhr.readyState == 3) {
         const lastLine = xhr.responseText.split('\n').filter(x => x).pop()
@@ -52,7 +51,8 @@ export default class WebEvents extends ReactComponent {
       .distinctUntilChanged()
       .map(x => {
         try {
-            return JSON.parse(x)
+            const data = JSON.parse(x)
+            if(data) return data.results[0]
         } catch(error) {}
       })
       .filter(x => x)
@@ -65,7 +65,10 @@ export default class WebEvents extends ReactComponent {
     return this._get(value._id)
         .then(data => ({...data, ...value}))
         .then(data => fetch(`${window.__env.ENDPOINT}/default/${value._id}`, {
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+        },
         method: 'PUT',
         body: JSON.stringify(data),
       }))
@@ -73,7 +76,10 @@ export default class WebEvents extends ReactComponent {
 
   _get (id) {
     return fetch(`${window.__env.ENDPOINT}/default/${id}`, {
-        headers: { 'content-type': 'application/json' },
+        headers: {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+        },
       })
       .then(x => x.json())
   }
