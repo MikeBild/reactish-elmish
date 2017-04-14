@@ -2,7 +2,7 @@ import React from 'react'
 import Rx from 'rx'
 import { ReactComponent } from '../../lib'
 
-export default class WebEvents extends ReactComponent {
+export default class ChangeFeed extends ReactComponent {
   init() {
     return {model: {}, cmd: 'SUBSCRIBE'};
   }

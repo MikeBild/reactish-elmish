@@ -11,7 +11,7 @@ export const HTTP2EventSource = props => (
   </div>
 )
 
-const enhanceWithElmishHTTP2EventSource = withElmish({
+const enhanceWithElmish = withElmish({
   init () {
     return {model: {}, cmd: 'SUBSCRIBE'};
   },
@@ -46,4 +46,4 @@ const eventSourceSubscription = () => {
   return changesStream.map(x => ({type: 'DOC_LOADED', model: x}))
 }
 
-export default compose(enhanceWithElmishHTTP2EventSource)(HTTP2EventSource)
+export default compose(enhanceWithElmish)(HTTP2EventSource)

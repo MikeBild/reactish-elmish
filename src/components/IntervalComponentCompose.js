@@ -8,7 +8,7 @@ export const IntervalComponentCompose = props => (
   </div>
 )
 
-const enhanceWithElmishInterval = withElmish({
+const enhanceWithElmish = withElmish({
   init () {
     return {
       model: {
@@ -29,4 +29,4 @@ const enhanceWithElmishInterval = withElmish({
   }
 })
 
-export default compose(enhanceWithElmishInterval)(IntervalComponentCompose)
+export default compose(enhanceWithElmish)(IntervalComponentCompose)

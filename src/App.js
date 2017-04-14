@@ -6,11 +6,11 @@ import CounterDelayed from './components/CounterDelayed'
 import Interval from './components/Interval'
 import IntervalComponent from './components/IntervalComponent'
 import IntervalComponentCompose from './components/IntervalComponentCompose'
-import Optimistic from './components/Optimistic'
+import OptimisticUpdate from './components/OptimisticUpdate'
 import CounterComposed from './components/CounterComposed'
 import RandomGifFetch from './components/RandomGifFetch'
 import RandomGifRx from './components/RandomGifRx'
-import WebEvents from './components/WebEvents'
+import ChangeFeed from './components/ChangeFeed'
 import HTTP2EventSource from './components/HTTP2EventSource'
 import Form from './components/Form'
 import Dump from './components/Dump'
@@ -47,8 +47,8 @@ export default class AllInOne extends React.Component {
         </div>
         <RandomGifFetch />
         <RandomGifRx />
-        <Optimistic />
-        <WebEvents />
+        <OptimisticUpdate />
+        <ChangeFeed />
         <HTTP2EventSource />
       </div>
     )
@@ -69,8 +69,8 @@ const Navigation = () => {
         <li><Link to="/intervalcomponentcompose">Interval component via functional composition</Link></li>
         <li><Link to="/randomgiffetch">Random Gif (Fetch)</Link></li>
         <li><Link to="/randomgifrx">Random Gif (Rx)</Link></li>
-        <li><Link to="/optimistic">Optimistic UI</Link></li>
-        <li><Link to="/webevents">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
+        <li><Link to="/optimisticupdate">Optimistic update UI</Link></li>
+        <li><Link to="/changefeed">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
       </ul>
     </div>
@@ -89,8 +89,8 @@ ReactDOM.render(
     <Route path="/intervalcomponentcompose" component={IntervalComponentCompose} />
     <Route path="/randomgiffetch" component={RandomGifFetch} />
     <Route path="/randomgifrx" component={RandomGifRx} />
-    <Route path="/optimistic" component={Optimistic} />
-    <Route path="/webevents" component={WebEvents} />
+    <Route path="/optimisticupdate" component={OptimisticUpdate} />
+    <Route path="/changefeed" component={ChangeFeed} />
     <Route path="/http2eventsource" component={HTTP2EventSource} />
     <Route path="/throttle" component={Throttle} />
   </Router>,
