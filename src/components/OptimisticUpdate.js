@@ -3,10 +3,13 @@ import Rx from 'rx'
 import { compose, withElmish } from '../../lib'
 
 export const OptimisticUpdate = props => (
-  <div className="widget">
-    <p>Optimistic (update) Counter: {props.model.count}</p>
-    <p>Transaction message: {props.model.message || '...'}</p>
-    <button onClick={() => props.update({type: 'UPDATE'})}>Press here to initiate update command</button>
+  <div>
+    <h1>Optimistic UI updates</h1>
+    <div className="widget">
+      <p>Optimistic (update) Counter: {props.model.count}</p>
+      <p>Transaction message: {props.model.message || '...'}</p>
+      <button onClick={() => props.update({type: 'UPDATE'})}>Press here to initiate update command</button>
+    </div>
   </div>
 )
 

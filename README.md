@@ -51,7 +51,7 @@ npm run deploy
 * [Interval component via functional composition](http://reactish-elmish.services.dropstack.run/intervalcomponentcompose)
 * [Random Gif (Fetch)](http://reactish-elmish.services.dropstack.run/randomgiffetch)
 * [Random Gif (Rx)](http://reactish-elmish.services.dropstack.run/randomgifrx)
-* [Optimistic update UI](http://reactish-elmish.services.dropstack.run/optimisticupdate)
+* [Optimistic UI updates](http://reactish-elmish.services.dropstack.run/optimisticupdate)
 * [CouchDB/PouchDB change feed via AJAX long polling](http://reactish-elmish.services.dropstack.run/webevents)
 * [EventSource via HTTP/2 push notifications](http://reactish-elmish.services.dropstack.run/http2eventsource)
 
