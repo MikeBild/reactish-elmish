@@ -76,7 +76,7 @@ const Navigation = () => {
         <li><Link to="/optimisticupdate">Optimistic update UI</Link></li>
         <li><Link to="/changefeed">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
-        <li><Link to="/componentcommunication">Inter-component communication via global/parent state handling</Link></li>
+        <li><Link to="/componentcommunication">Inter-component communication via global/parent state handling (aka createStore/reducer)</Link></li>
         <li><Link to="/componentcommunicationviastream">Inter-component communication via streams (RxJs)</Link></li>
       </ul>
     </div>

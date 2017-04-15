@@ -55,7 +55,7 @@ npm run deploy
 * [CouchDB/PouchDB change feed via AJAX long polling](http://reactish-elmish.services.dropstack.run/webevents)
 * [EventSource via HTTP/2 push notifications](http://reactish-elmish.services.dropstack.run/http2eventsource)
 * [Inter-component communication via global/parent state handling (aka createStore/reducer)](http://reactish-elmish.services.dropstack.run/componentcommunication)
-* [Inter-component communication via global/parent state handling](http://reactish-elmish.services.dropstack.run/componentcommunicationviastream)
+* [Inter-component communication via streams (RxJs)](http://reactish-elmish.services.dropstack.run/componentcommunicationviastream)
 
 ## Elmish API
 
