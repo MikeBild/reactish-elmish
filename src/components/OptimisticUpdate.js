@@ -8,7 +8,7 @@ export const OptimisticUpdate = props => (
     <div className="widget">
       <p>Optimistic (update) Counter: {props.model.count}</p>
       <p>Transaction message: {props.model.message || '...'}</p>
-      <button onClick={() => props.update({type: 'UPDATE'})}>Press here to initiate update command</button>
+      <button onClick={() => props.action({type: 'UPDATE'})}>Press here to initiate update command</button>
     </div>
   </div>
 )

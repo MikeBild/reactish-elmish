@@ -16,13 +16,13 @@ export default class ChangeFeed extends ReactComponent {
     }
   }
 
-  view (model, update) {
+  view (model, action) {
     return (
       <div>
         <h1>CouchDB/PouchDB change feed via AJAX long polling</h1>
         <div className="widget">
           ID: {model._id} - Seqence: {model.seq} - Datetime: {model.dt}&nbsp;
-          <button onClick={() => update({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
+          <button onClick={() => action({cmd: 'UPSERT_DOC', model: model})}>Change Document</button>
         </div>
       </div>
     );

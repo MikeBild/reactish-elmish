@@ -14,6 +14,7 @@ import ChangeFeed from './components/ChangeFeed'
 import HTTP2EventSource from './components/HTTP2EventSource'
 import Form from './components/Form'
 import Dump from './components/Dump'
+import CompositionWithComponentCommunication from './pages/CompositionWithComponentCommunication'
 import Throttle from './components/Throttle'
 import './style.css'
 
@@ -72,6 +73,7 @@ const Navigation = () => {
         <li><Link to="/optimisticupdate">Optimistic update UI</Link></li>
         <li><Link to="/changefeed">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
+        <li><Link to="/componentcommunication">(Global) state handling for inter-component communication</Link></li>
       </ul>
     </div>
   )
@@ -92,6 +94,7 @@ ReactDOM.render(
     <Route path="/optimisticupdate" component={OptimisticUpdate} />
     <Route path="/changefeed" component={ChangeFeed} />
     <Route path="/http2eventsource" component={HTTP2EventSource} />
+    <Route path="/componentcommunication" component={CompositionWithComponentCommunication} />
     <Route path="/throttle" component={Throttle} />
   </Router>,
   document.getElementById('root'))
