@@ -15,6 +15,7 @@ import HTTP2EventSource from './components/HTTP2EventSource'
 import Form from './components/Form'
 import Dump from './components/Dump'
 import CompositionWithComponentCommunication from './pages/CompositionWithComponentCommunication'
+import CompositionWithComponentCommunicationViaStream from './pages/CompositionWithComponentCommunicationViaStream'
 import Throttle from './components/Throttle'
 import './style.css'
 
@@ -51,6 +52,8 @@ export default class AllInOne extends React.Component {
         <OptimisticUpdate />
         <ChangeFeed />
         <HTTP2EventSource />
+        <CompositionWithComponentCommunication />
+        <CompositionWithComponentCommunicationViaStream />
       </div>
     )
   }
@@ -73,7 +76,8 @@ const Navigation = () => {
         <li><Link to="/optimisticupdate">Optimistic update UI</Link></li>
         <li><Link to="/changefeed">CouchDB/PouchDB change feed via AJAX long polling</Link></li>
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
-        <li><Link to="/componentcommunication">(Global) state handling for inter-component communication</Link></li>
+        <li><Link to="/componentcommunication">Inter-component communication via global/parent state handling</Link></li>
+        <li><Link to="/componentcommunicationviastream">Inter-component communication via streams (RxJs)</Link></li>
       </ul>
     </div>
   )
@@ -95,6 +99,7 @@ ReactDOM.render(
     <Route path="/changefeed" component={ChangeFeed} />
     <Route path="/http2eventsource" component={HTTP2EventSource} />
     <Route path="/componentcommunication" component={CompositionWithComponentCommunication} />
+    <Route path="/componentcommunicationviastream" component={CompositionWithComponentCommunicationViaStream} />
     <Route path="/throttle" component={Throttle} />
   </Router>,
   document.getElementById('root'))

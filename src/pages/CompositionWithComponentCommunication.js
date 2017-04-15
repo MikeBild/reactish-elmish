@@ -1,11 +1,10 @@
 import React from 'react'
-import Rx from 'rx'
 import { compose, withElmish } from '../../lib'
 import Counter from '../components/Counter'
 
 const CompositionWithComponentCommunication = props => (
   <div>
-    <h1>(Global) state handling for inter-component communication</h1>
+    <h1>Inter-component communication via global/parent state handling</h1>
     <div className="widget">
       <Counter count={props.model.counter1} onUpdated={state => props.action({type: 'CALCULATE_COUNTER_1', ...state})} />
       <Counter count={props.model.counter2} onUpdated={state => props.action({type: 'CALCULATE_COUNTER_2', ...state})} />
@@ -16,7 +15,7 @@ const CompositionWithComponentCommunication = props => (
   </div>
 )
 
-const storeWithElmish = withElmish({
+const stateWithElmish = withElmish({
   init() {
     return {
       model: {
@@ -36,4 +35,4 @@ const storeWithElmish = withElmish({
   },
 })
 
-export default compose(storeWithElmish)(CompositionWithComponentCommunication)
+export default compose(stateWithElmish)(CompositionWithComponentCommunication)
