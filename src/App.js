@@ -16,6 +16,7 @@ import Form from './components/Form'
 import Dump from './components/Dump'
 import CompositionWithComponentCommunication from './pages/CompositionWithComponentCommunication'
 import CompositionWithComponentCommunicationViaStream from './pages/CompositionWithComponentCommunicationViaStream'
+import CompositionWithGraphQL from './pages/CompositionWithGraphQL'
 import Throttle from './components/Throttle'
 import './style.css'
 
@@ -54,6 +55,7 @@ export default class AllInOne extends React.Component {
         <HTTP2EventSource />
         <CompositionWithComponentCommunication />
         <CompositionWithComponentCommunicationViaStream />
+        <CompositionWithGraphQL />
       </div>
     )
   }
@@ -78,6 +80,7 @@ const Navigation = () => {
         <li><Link to="/http2eventsource">EventSource via HTTP/2 push notifications</Link></li>
         <li><Link to="/componentcommunication">Inter-component communication via global/parent state handling (aka createStore/reducer)</Link></li>
         <li><Link to="/componentcommunicationviastream">Inter-component communication via streams (RxJs)</Link></li>
+        <li><Link to="/componentwithgraphql">Component composition with GraphQL data fetching (Apollo-Client)</Link></li>
       </ul>
     </div>
   )
@@ -100,6 +103,7 @@ ReactDOM.render(
     <Route path="/http2eventsource" component={HTTP2EventSource} />
     <Route path="/componentcommunication" component={CompositionWithComponentCommunication} />
     <Route path="/componentcommunicationviastream" component={CompositionWithComponentCommunicationViaStream} />
+    <Route path="/componentwithgraphql" component={CompositionWithGraphQL} />
     <Route path="/throttle" component={Throttle} />
   </Router>,
   document.getElementById('root'))

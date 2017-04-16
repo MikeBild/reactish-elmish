@@ -56,6 +56,7 @@ npm run deploy
 * [EventSource via HTTP/2 push notifications](http://reactish-elmish.services.dropstack.run/http2eventsource)
 * [Inter-component communication via global/parent state handling (aka createStore/reducer)](http://reactish-elmish.services.dropstack.run/componentcommunication)
 * [Inter-component communication via streams (RxJs)](http://reactish-elmish.services.dropstack.run/componentcommunicationviastream)
+* [Component composition with GraphQL data fetching (Apollo-Client)](http://reactish-elmish.services.dropstack.run/componentwithgraphql)
 
 ## Elmish API
 
