@@ -54,7 +54,7 @@ const enhanceWithElmish = withElmish({
   }
 })
 
-// randomly changing success (HTTP 200) / failure (HTTP 500) with 1s legacy result
+// randomly changing success (HTTP 200) / failure (HTTP 500) (1s latency) result
 const apiSubscription = () => {
   return fetch(`${window.__env.LAMBDA_FUNCTION_ENDPOINT}/failure-example`, {
     headers: {

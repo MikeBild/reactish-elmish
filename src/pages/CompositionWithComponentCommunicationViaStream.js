@@ -7,16 +7,16 @@ const CompositionWithComponentCommunicationViaStream = props => (
   <div>
     <h1>Inter-component communication via streams (RxJs)</h1>
     <div className="widget">
-      <Counter count={props.model.counter1} onUpdated={state => props.subscription.onNext({type: 'CALCULATE_COUNTER_1', ...state})} />
-      <Counter count={props.model.counter2} onUpdated={state => props.subscription.onNext({type: 'CALCULATE_COUNTER_2', ...state})} />
+      <Counter count={props.model.counter1} onUpdated={() => props.action({type: 'CALCULATE_COUNTER'})} />
+      <Counter count={props.model.counter2} onUpdated={() => props.action({type: 'CALCULATE_COUNTER'})} />
     </div>
     <div className="widget">
-      Computed state by parent: {props.model.computeState}
+      Computed (1s latency) state by parent: {props.model.computeState}
     </div>
   </div>
 )
 
-const streamWithElmish = withElmish({
+const enhanceWithElmish = withElmish({
   init() {
     return {
       model: {
@@ -24,23 +24,22 @@ const streamWithElmish = withElmish({
         counter2: 1,
         computeState: 0,
       },
-      cmd: 'SUBSCRIBE',
     }
   },
   update(model, msg) {
-    return {
-      model: {
-        ...model,
-        computeState: model.computeState + 1,
-      }
+    switch(msg.type) {
+      case 'CALCULATE_COUNTER':
+        return {model, cmd: 'CALCULATE_COUNTER'}
+      case 'COUNTER_CALCULATED':
+        return {model: {...model, computeState: model.computeState + 1}}
     }
   },
   subscriptions(cmd, msgStream) {
     switch(cmd) {
-      case 'SUBSCRIBE':
-        return new Rx.Subject()
+      case 'CALCULATE_COUNTER':
+        return Rx.Observable.return({type: 'COUNTER_CALCULATED'}).delay(1000)
     }
   }
 })
 
-export default compose(streamWithElmish)(CompositionWithComponentCommunicationViaStream)
+export default compose(enhanceWithElmish)(CompositionWithComponentCommunicationViaStream)

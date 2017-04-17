@@ -15,7 +15,7 @@ const CompositionWithComponentCommunication = props => (
   </div>
 )
 
-const stateWithElmish = withElmish({
+const enhanceWithElmish = withElmish({
   init() {
     return {
       model: {
@@ -35,4 +35,4 @@ const stateWithElmish = withElmish({
   },
 })
 
-export default compose(stateWithElmish)(CompositionWithComponentCommunication)
+export default compose(enhanceWithElmish)(CompositionWithComponentCommunication)
