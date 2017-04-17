@@ -12,8 +12,17 @@ export const ArticleList = props => (
       }
       { props.data &&
         props.data.allArticles &&
-        props.data.allArticles.map(x => <div key={x.id}>{x.title}</div>)
+        props.data.allArticles.map(x =>
+          <div key={x.id}>
+            {x.title}&nbsp;
+            <button onClick={() => props.deleteArticle({variables: {id: x.id}}).then(props.data.refetch)}>Delete article and refetch</button>
+          </div>
+        )
       }
+    </div>
+    <div className="widget">
+      <input type="text" onBlur={e => props.action({type: 'UPDATE_TITLE', title: e.target.value})} placeholder="Enter a title" />&nbsp;
+      <button onClick={() => props.upsertArticle({variables: {input: {title: props.model.title}}}).then(props.data.refetch)}>Upsert article and refetch</button>
     </div>
     <div className="widget">
       <h4>Elmish data</h4>
@@ -26,41 +35,48 @@ const enhanceWithElmish = withElmish({
   init(props) {
     return {
       model: {
-        ...props.model,
-        demoData1: 'A',
+        ...props,
+        title: 'Empty',
       }
     }
   },
   update(model, msg) {
-    return {model}
-  },
-})
-
-const enhanceEnhanceWithElmish = withElmish({
-  init(props) {
-    return {
-      model: {
-        ...props.model,
-        demoData2: 'B',
-      }
+    switch(msg.type) {
+      case 'UPDATE_TITLE':
+        model.title = msg.title || 'Empty'
+        break
     }
-  },
-  update(model, msg) {
     return {model}
   },
 })
 
-const FetchArticlesQuery = gql`query fetch_all_articles {
+const FetchArticlesQuery = gql`query fetchAllArticles {
   allArticles {
     id
     title
   }
 }`
 
+const UpsertArticleMutation = gql`mutation upsertArticle($input: ArticleInput) {
+  upsertArticle(input: $input) {
+    article {
+      id
+      title
+    }
+  }
+}
+`
+const DeleteArticleMutation = gql`mutation deleteArticle($id: ID!) {
+  deleteArticle(id: $id) {
+    deletedArticleId
+  }
+}`
+
 export const ArticleListWithGraphQLWithData = compose(
   enhanceWithElmish,
-  enhanceEnhanceWithElmish,
-  graphql(FetchArticlesQuery), // order to last, because issue in Apollo enhancements
+  graphql(FetchArticlesQuery),
+  graphql(UpsertArticleMutation, {name: 'upsertArticle'}),
+  graphql(DeleteArticleMutation, {name: 'deleteArticle'}),
 )(ArticleList)
 
 const networkInterface = createNetworkInterface({uri: `${window.__env.GRAPHQL_ENDPOINT}/graphql`})
