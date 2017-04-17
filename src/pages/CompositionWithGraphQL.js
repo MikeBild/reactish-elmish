@@ -64,8 +64,7 @@ const UpsertArticleMutation = gql`mutation upsertArticle($input: ArticleInput) {
       title
     }
   }
-}
-`
+}`
 const DeleteArticleMutation = gql`mutation deleteArticle($id: ID!) {
   deleteArticle(id: $id) {
     deletedArticleId
