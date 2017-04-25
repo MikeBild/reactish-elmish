@@ -28,8 +28,6 @@ npm run deploy
 
 ![Diagram](docs/diagram.png)
 
-* [Optimistic Updates / UI](docs/optimistic-update.md)
-
 ## Introduction
 
 * Frontend-Developer friendly syntax and semantic (similar to Event/Game-Loop)
@@ -39,6 +37,30 @@ npm run deploy
 * Minimal inversive - combine React-Rendering and Reactive Extentions without building a Framework with unnecessary abstractions
 * Follow the principle of "reactive" fold left with [Rx Scan Operator](http://rxmarbles.com/#scan)
 * Async/Sync side effect orchestration via [Rx-Observables](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html)
+
+## Handle side-effects and compose asynchron data flows
+
+* Reactish-Elmish manage side-effects using observable from the `subscription(...)` function
+* Observables are streams of messages
+* Observables are decomposable to smaller observables
+* Observables are composable to larger observables
+* Every observable has three different kinds of "signals" to manage the lifecycle (subscription state) of the stream
+  * next - data message pushed to the stream
+  * error - error message pushed to the stream (end of subscription)
+  * complete - done message pushed to the stream (end of subscription)
+
+### Creation of initial stream
+
+* Return an observable (e.g. Rx.Observable.interval(...) in your component using the `subscription(cmd, $observable)` function
+* You don't need to `subscribe()` inside of your `subscription(...)` function. Just, send a command and Reatish-Elmish will `subscribe(...)` to your created observable.
+* Reactish-Elmish calls `update(message, ...)` via `$observable.do(...)` for every message pushed from the created observable
+
+### Handle the stream lifecycle
+
+* You get your created observable reference to the second function argument [**(message, $observable) -> $observable)**]
+* Decompose to smaller data flows via observable operators like (.filter(...), .take(...), etc.)
+* Compose to larger data flows via observable operators like (.merge(...), .concat(...), etc.)
+* Compose with other observables to manage the subscription lifecycle using (.takeUntil(...), .takeWhile(...), etc.)
 
 ## Examples
 
@@ -61,13 +83,13 @@ npm run deploy
 
 ## Elmish API
 
-**init()** function, returning the initial state (a state is an object with a required key model and an optional key cmd)
+**init(props)** function, returning the initial model (a state is an object with a required key model and an optional key cmd) [**() -> model**]
 
-**update(model, msg)** reduce function, returns the new state
+**update(model, message)** reduce function, returns the new model [**(model, message) -> model**]
 
-**view(model, update)** function, returns the updated UI (React)
+**view(model, action)** function, returns the updated UI (React)  [**(model) -> html**]
 
-**subscription(cmd, msgStream)** function, manage composable side effects returns a stream of messages (Rx Observable)
+**subscription(cmd, $observable)** function, manage composable side effects returns an Rx observable (stream of messages) [**(message, $observable) -> $observable)**]
 
 ## Reactish API
 
@@ -92,16 +114,17 @@ const elmishInterval = withElmish({
       model: {
         count: 0
       },
+      // command to subscribe to side-effects (optional)
       cmd: 'INTERVAL_START'
     }
   },
   // Update state
-  update (model, msg) {
+  update (model, message) {
     model.count += 1
     return { model }
   },
   // Attach subscriptions to external side-effects
-  subscriptions (cmd) {
+  subscriptions (cmd, $observable) {
     switch (cmd) {
       case 'INTERVAL_START':
         return Rx.Observable.interval(1000).map(x => 'INTERVAL_ELAPSED')
@@ -127,8 +150,8 @@ export default class MyComponent extends ReactComponent {
   }
 
   // Update state
-  update(model, msg) {
-    switch (msg.type) {
+  update(model, message) {
+    switch (message.type) {
       case 'DO_SOMETHING':
         return {
           model: { something: 'Foo Bar', }
@@ -141,11 +164,11 @@ export default class MyComponent extends ReactComponent {
   }
 
   // Render view
-  view(model, update) {
+  view(model, action) {
     return (
       <div>
         {JSON.stringify(model, null, 4)}
-        <button onClick={() => update({type: 'DO_SOMETHING', model})}>Click</button>
+        <button onClick={() => action({type: 'DO_SOMETHING', model})}>Click</button>
       </div>
     )
   }
@@ -153,6 +176,10 @@ export default class MyComponent extends ReactComponent {
 }
 ```
 
-## Todos
+## Testing on Component-Level
 
-* Debounce / Throttle example
+```bash
+npm test
+```
+
+* [Delayed Counter Example](tests/DelayedCounter.test.js)
