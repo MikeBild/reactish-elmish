@@ -38,6 +38,13 @@ npm run deploy
 * Follow the principle of "reactive" fold left with [Rx Scan Operator](http://rxmarbles.com/#scan)
 * Async/Sync side effect orchestration via [Rx-Observables](http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html)
 
+## Reative Extentions vs. Elm Side-Effects
+
+* Subscriptions in Elm signals **"only" next message**. No publishing of error and complete signals. Just use a **"message content filter"** in model update functions.
+* To handle and chain asynchronous side-effects Elm have the concept of [Tasks](http://package.elm-lang.org/packages/elm-lang/core/latest/Task)
+  * Tasks have success and error signals
+  * You can chain your side-effects with `task.andThen`
+
 ## Handle side-effects and compose asynchron data flows
 
 * Reactish-Elmish manage side-effects using observable from the `subscription(...)` function
@@ -52,7 +59,7 @@ npm run deploy
 ### Creation of initial stream
 
 * Return an observable (e.g. Rx.Observable.interval(...) in your component using the `subscription(cmd, $observable)` function
-* You don't need to `subscribe()` inside of your `subscription(...)` function. Just, send a command and Reatish-Elmish will `subscribe(...)` to your created observable.
+* You don't need to `subscribe()` inside of your `subscription(...)` function. Just, send a command and Reactish-Elmish will `subscribe(...)` to your created observable.
 * Reactish-Elmish calls `update(message, ...)` via `$observable.do(...)` for every message pushed from the created observable
 
 ### Handle the stream lifecycle
