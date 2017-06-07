@@ -2,7 +2,7 @@
 
 > __Proof of Concept__ - [Rx(ified)](http://reactivex.io/rxjs/) and [React(ified)](https://facebook.github.io/react/docs/introducing-jsx.html) version for a better understanding of the [Elm Architecture](https://guide.elm-lang.org/architecture/). Don't use in production!
 
-## [Live](https://reactish-elmish.services.dropstack.run)
+## [Live Demo](https://reactish-elmish.cloud.dropstack.run)
 
 ## Setup
 
@@ -71,22 +71,22 @@ npm run deploy
 
 ## Examples
 
-* [All in One](http://reactish-elmish.services.dropstack.run/allinone)
-* [Counter](http://reactish-elmish.services.dropstack.run/counter)
-* [Counter delayed](http://reactish-elmish.services.dropstack.run/counterdelayed)
-* [Counter composed](http://reactish-elmish.services.dropstack.run/countercomposed)
-* [Form / Validation](http://reactish-elmish.services.dropstack.run/form)
-* [Interval component](http://reactish-elmish.services.dropstack.run/intervalcomponent)
-* [Interval component via functional composition](http://reactish-elmish.services.dropstack.run/intervalcomponentcompose)
-* [Random Gif (Fetch)](http://reactish-elmish.services.dropstack.run/randomgiffetch)
-* [Random Gif (Rx)](http://reactish-elmish.services.dropstack.run/randomgifrx)
-* [Optimistic UI updates](http://reactish-elmish.services.dropstack.run/optimisticupdate)
-* [Long-Running Process (aka Saga) (RxJs)](http://reactish-elmish.services.dropstack.run/ordersaga)
-* [CouchDB/PouchDB change feed via AJAX long polling](http://reactish-elmish.services.dropstack.run/webevents)
-* [EventSource via HTTP/2 push notifications](http://reactish-elmish.services.dropstack.run/http2eventsource)
-* [Inter-component communication via global/parent state handling (aka createStore/reducer)](http://reactish-elmish.services.dropstack.run/componentcommunication)
-* [Inter-component communication via streams (RxJs)](http://reactish-elmish.services.dropstack.run/componentcommunicationviastream)
-* [Component composition with GraphQL data fetching (Apollo-Client)](http://reactish-elmish.services.dropstack.run/componentwithgraphql)
+* [All in One](http://reactish-elmish.cloud.dropstack.run/allinone)
+* [Counter](http://reactish-elmish.cloud.dropstack.run/counter)
+* [Counter delayed](http://reactish-elmish.cloud.dropstack.run/counterdelayed)
+* [Counter composed](http://reactish-elmish.cloud.dropstack.run/countercomposed)
+* [Form / Validation](http://reactish-elmish.cloud.dropstack.run/form)
+* [Interval component](http://reactish-elmish.cloud.dropstack.run/intervalcomponent)
+* [Interval component via functional composition](http://reactish-elmish.cloud.dropstack.run/intervalcomponentcompose)
+* [Random Gif (Fetch)](http://reactish-elmish.cloud.dropstack.run/randomgiffetch)
+* [Random Gif (Rx)](http://reactish-elmish.cloud.dropstack.run/randomgifrx)
+* [Optimistic UI updates](http://reactish-elmish.cloud.dropstack.run/optimisticupdate)
+* [Long-Running Process (aka Saga) (RxJs)](http://reactish-elmish.cloud.dropstack.run/ordersaga)
+* [CouchDB/PouchDB change feed via AJAX long polling](http://reactish-elmish.cloud.dropstack.run/webevents)
+* [EventSource via HTTP/2 push notifications](http://reactish-elmish.cloud.dropstack.run/http2eventsource)
+* [Inter-component communication via global/parent state handling (aka createStore/reducer)](http://reactish-elmish.cloud.dropstack.run/componentcommunication)
+* [Inter-component communication via streams (RxJs)](http://reactish-elmish.cloud.dropstack.run/componentcommunicationviastream)
+* [Component composition with GraphQL data fetching (Apollo-Client)](http://reactish-elmish.cloud.dropstack.run/componentwithgraphql)
 
 ## Elmish API
 

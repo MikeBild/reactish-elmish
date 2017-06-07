@@ -1,7 +1,8 @@
 {
   "variables": [],
-  "alias": "reactish-elmish.services.dropstack.run",
+  "instances": 1,
+  "alias": "reactish-elmish.cloud.dropstack.run",
   "type": "spa",
   "name": "focqrnar",
-  "serviceUrl": "focqrnar.services.dropstack.run"
+  "serviceUrl": "focqrnar.cloud.dropstack.run"
 }
